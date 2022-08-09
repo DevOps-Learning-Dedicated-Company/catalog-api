@@ -28,6 +28,7 @@ jobs:
     - run: npm test
     
     - name: Copy Build Artifact
+      uses: canastro/copy-action@0.0.2
       with:
         # Source file
         source: '$(System.DefaultWorkingDirectory)'
