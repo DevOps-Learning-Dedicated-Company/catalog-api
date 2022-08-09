@@ -26,3 +26,7 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: $(System.DefaultWorkingDirectory)/bin/WebApp
+          artifactName: WebApp
