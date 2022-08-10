@@ -65,7 +65,7 @@ jobs:
       run: |
           mkdir Artifacts
           cp -r bin Artifacts
-          cp routes Artifacts
+          cp -r routes Artifacts
           cp app.js Artifacts
           cp package-lock.json Artifacts
           cp package.json Artifacts
