@@ -62,7 +62,7 @@ jobs:
     # Target file
 #        target: Artifacts
     - name: Run a multi-line script
-      run: 
+      run: |
           mkdir Artifacts,
           cp bin Artifacts,
           cp routes Artifacts,
