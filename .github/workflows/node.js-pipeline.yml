@@ -26,42 +26,49 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
     
-    - name: Copy Directory
-      uses: MadaraUchiha/copy-action@0.0.1
-      with:
-        source: bin
-        target: Artifacts
+#    - name: Copy Directory
+#      uses: MadaraUchiha/copy-action@0.0.1
+#      with:
+#        source: bin
+#        target: Artifacts
         
-    - name: Copy Directory
-      uses: MadaraUchiha/copy-action@0.0.1
-      with:
-        source: routes
-        target: Artifacts
+#    - name: Copy Directory
+#      uses: MadaraUchiha/copy-action@0.0.1
+#      with:
+#        source: routes
+#        target: Artifacts
     
-    - name: Copy file
-      uses: canastro/copy-action@0.0.2
-      with:
-    # Source file
-        source: app.js
-    # Target file
-        target: Artifacts
+#    - name: Copy file
+#      uses: canastro/copy-action@0.0.2
+#     with:
+#    # Source file
+#        source: app.js
+#    # Target file
+#        target: Artifacts
         
-    - name: Copy file
-      uses: canastro/copy-action@0.0.2
-      with:
+#    - name: Copy file
+#      uses: canastro/copy-action@0.0.2
+#      with:
     # Source file
-        source: package-lock.json
+#        source: package-lock.json
     # Target file
-        target: Artifacts
+#        target: Artifacts
         
-    - name: Copy file
-      uses: canastro/copy-action@0.0.2
-      with:
+#    - name: Copy file
+#      uses: canastro/copy-action@0.0.2
+#      with:
     # Source file
-        source: package.json
+#        source: package.json
     # Target file
-        target: Artifacts
-    
+#        target: Artifacts
+    - name: Run a one-line script
+      run: 
+          cp bin Artifacts
+          cp routes Artifacts
+          cp app.js Artifacts
+          cp package-lock.json Artifacts
+          cp package.json Artifacts
+        
     - name: Upload APP artifacts
       uses: actions/upload-artifact@v3.1.0
       with:
