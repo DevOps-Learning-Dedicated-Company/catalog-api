@@ -28,7 +28,7 @@ jobs:
     - run: npm test
         
     - name: Publish APP artifacts
-      uses: actions/upload-artifact@v1.0.0
+      uses: actions/upload-artifact@v3.1.0
       with:
         name: ${{ env.APP_ARTIFACT_NAME }}
         path: ${{ env.APP_PACKAGE_PATH }}
