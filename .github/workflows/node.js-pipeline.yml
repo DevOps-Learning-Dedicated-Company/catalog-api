@@ -64,7 +64,7 @@ jobs:
     - name: Run a multi-line script
       run: |
           mkdir Artifacts
-          cp bin Artifacts
+          cp -r bin Artifacts
           cp routes Artifacts
           cp app.js Artifacts
           cp package-lock.json Artifacts
