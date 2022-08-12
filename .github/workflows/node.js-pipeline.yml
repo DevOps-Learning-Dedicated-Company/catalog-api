@@ -26,11 +26,11 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
     
-    - name: Copying files
+    - name: Docker commands
       run: |
           docker login --username parteg132 --password ${{ secrets.DOCKER_PASS }}
-          docker build . -t parteg132/catalog-api-image-Actions
-          docker image push parteg132/catalog-api-image-Actions
+          docker build . -t parteg132/catalog-api-image-actions
+          docker image push parteg132/catalog-api-image-actions
     
     - name: Copying files
       run: |
