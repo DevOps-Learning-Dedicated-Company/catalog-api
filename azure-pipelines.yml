@@ -32,6 +32,11 @@ steps:
       cp package-lock.json $(Build.ArtifactStagingDirectory)
       cp package.json $(Build.ArtifactStagingDirectory)
 
+- task: Docker@2
+  inputs:
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
