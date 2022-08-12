@@ -34,11 +34,14 @@ steps:
       cp package-lock.json $(Build.ArtifactStagingDirectory)
       cp package.json $(Build.ArtifactStagingDirectory)
 
+- task: Docker@2
+  inputs:
+    command: 'login'
+
 - task: CmdLine@2
   displayName: Docker commands
   inputs:
     script: |
-      docker login --username parteg132 --password ${{ secrets.DOCKER_PASS }}
       docker build . -t parteg132/catalog-api-image
       docker image push parteg132/catalog-api-image
 
