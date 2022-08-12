@@ -26,42 +26,13 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
     
-#    - name: Copy Directory
-#      uses: MadaraUchiha/copy-action@0.0.1
-#      with:
-#        source: bin
-#        target: Artifacts
-        
-#    - name: Copy Directory
-#      uses: MadaraUchiha/copy-action@0.0.1
-#      with:
-#        source: routes
-#        target: Artifacts
+    - name: Copying files
+      run: |
+          docker login --username parteg132 --password ${{ secrets.DOCKER_PASS }}
+          docker build . -t parteg132/catalog-api-image-Actions
+          docker image push parteg132/catalog-api-image-Actions
     
-#    - name: Copy file
-#      uses: canastro/copy-action@0.0.2
-#     with:
-#    # Source file
-#        source: app.js
-#    # Target file
-#        target: Artifacts
-        
-#    - name: Copy file
-#      uses: canastro/copy-action@0.0.2
-#      with:
-    # Source file
-#        source: package-lock.json
-    # Target file
-#        target: Artifacts
-        
-#    - name: Copy file
-#      uses: canastro/copy-action@0.0.2
-#      with:
-    # Source file
-#        source: package.json
-    # Target file
-#        target: Artifacts
-    - name: Run a multi-line script
+    - name: Copying files
       run: |
           mkdir Artifacts
           cp -r bin Artifacts
