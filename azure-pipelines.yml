@@ -41,12 +41,11 @@ steps:
       docker login --username parteg132 --password $XD
       docker build . -t parteg132/catalog-api-image
       docker image push parteg132/catalog-api-image
+  env:
+    XD: $(DOCKER_PASS) 
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
-    publishLocation: 'Container'
-
-  env:
-    XD: $(DOCKER_PASS) 
+    publishLocation: 'Container' 
