@@ -1,0 +1,48 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+resources:
+  pipelines:
+  - pipeline: catalog-api-build # Name of the pipeline resource.
+    source: catalog-api-build # The name of the pipeline referenced by this pipeline resource.
+    project: az-and-devops # Required only if the source pipeline is in another project
+    trigger: true # Run app-ci pipeline when any run of catalog-api-build completes
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+
+- stage: dev
+  jobs:
+  - deployment: deployDev
+    environment: dev
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo 'Hello World 1'
+
+- stage: prod
+  dependsOn: dev
+  jobs:
+  - deployment: deployProd
+    environment: prod
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+           - script: echo 'Hello World 2'
+
+- stage: dr
+  dependsOn: dev
+  jobs:
+  - deployment: 
+    environment: dr
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+           - script: echo 'Hello World 3'
