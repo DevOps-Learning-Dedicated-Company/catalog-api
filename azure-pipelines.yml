@@ -16,6 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 - task: CmdLine@2
+  displayName: Running npm commands
   inputs:
     script: |
       npm install
@@ -24,6 +25,7 @@ steps:
       npm test
 
 - task: CmdLine@2
+  displayName: Copying files
   inputs:
     script: |
       cp -r bin $(Build.ArtifactStagingDirectory)
@@ -32,10 +34,12 @@ steps:
       cp package-lock.json $(Build.ArtifactStagingDirectory)
       cp package.json $(Build.ArtifactStagingDirectory)
 
-- task: Docker@2
+- task: CmdLine@2
+  displayName: Docker commands
   inputs:
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+    script: |
+      docker build . -t parteg132/catalog-api-image
+      docker image push parteg132/catalog-api-image
 
 - task: PublishBuildArtifacts@1
   inputs:
