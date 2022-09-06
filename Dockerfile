@@ -1,16 +1,14 @@
-FROM node:16
-
+FROM node:lts-alpine
+ENV NODE_ENV=production
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY ["package.json", "package-lock.json*",  "./"]
+RUN npm ci 
 
-RUN npm ci
+COPY . .
+EXPOSE 3000
 
-COPY bin/ ./
-COPY routes/ ./
-COPY app.js ./
-COPY package-lock.json ./
-COPY package.json ./
+RUN chown -R node /usr/src/app
+USER node
 
-EXPOSE 8080
-CMD [ "node", "server.js" ]
+CMD ["npm", "start"]
