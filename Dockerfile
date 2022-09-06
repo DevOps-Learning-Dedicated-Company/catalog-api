@@ -1,13 +1,16 @@
 FROM node:16
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm ci
 
-COPY . .
+COPY bin/ ./
+COPY routes/ ./
+COPY app.js ./
+COPY package-lock.json ./
+COPY package.json ./
 
 EXPOSE 8080
-
 CMD [ "node", "server.js" ]
